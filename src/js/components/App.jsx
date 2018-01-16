@@ -35,10 +35,11 @@ class App extends Component {
   }
 
   onDismiss = (id) => {
+    const { hits } = this.state.result
     function isNotId (item) {
       return item.objectID !== id
     }
-    const updatedHits = this.state.result.hits.filter(isNotId)
+    const updatedHits = hits.filter(isNotId)
     this.setState({
       result: Object.assign({}, this.state.result, {
         hits: updatedHits
