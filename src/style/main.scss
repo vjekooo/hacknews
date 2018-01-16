@@ -1,0 +1,29 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: salmon;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  
+}
+.one {
+  width: 500px;
+  padding-left: 1rem;
+  h1 {
+    color: mistyrose;
+  }
+}
+.two {
+  width: 500px;
+  height: 100px;
+}
