@@ -2,12 +2,7 @@
 import React, { Component } from 'react'
 import Search from './Search'
 import Table from './Table'
-
-const DEFAULT_QUERY = 'redux'
-
-const PATH_BASE = 'https://hn.algolia.com/api/v1'
-const PATH_SEARCH = '/search'
-const PARAM_SEARCH = 'query='
+import { DEFAULT_QUERY, fetchData } from '../../data'
 
 const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,8 +24,7 @@ class App extends Component {
   }
 
   fetchSearchTopStories = (searchTerm) => {
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
-      .then(response => response.json())
+    fetchData(searchTerm)
       .then(result => this.setSearchTopStories(result))
       .catch(e => e)
   }
@@ -44,7 +38,7 @@ class App extends Component {
     function isNotId (item) {
       return item.objectID !== id
     }
-    const updatedHits = this.state.list.filter(isNotId)
+    const updatedHits = this.state.result.hits.filter(isNotId)
     this.setState({
       result: Object.assign({}, this.state.result, {
         hits: updatedHits
@@ -57,7 +51,6 @@ class App extends Component {
       searchTerm: event.target.value
     })
   }
-
   render () {
     const { searchTerm, result } = this.state
     if (!result) {
