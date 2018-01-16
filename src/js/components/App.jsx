@@ -58,7 +58,9 @@ class App extends Component {
         <Search
           value={searchTerm}
           onSearchChange={this.onSearchChange}
-        />
+        >
+          Search
+        </Search>
         <Table
           list={list}
           searchTerm={searchTerm}

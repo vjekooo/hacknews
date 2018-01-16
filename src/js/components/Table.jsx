@@ -1,6 +1,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from './Button'
 
 const Table = (props) => {
   const { searchTerm, list, onDismiss, isSearched } = props
@@ -17,12 +18,11 @@ const Table = (props) => {
               <span>{item.author}</span>
               <span>{item.num_comments}</span>
               <span>{item.points}</span>
-              <button
-                type="button"
-                onClick={() => onDismiss(item.objectID)}
+              <Button
+                onDismiss={() => { onDismiss(item.objectID) }}
               >
                 Dismiss
-              </button>
+              </Button>
             </div>
           )
       }
@@ -31,10 +31,10 @@ const Table = (props) => {
 }
 
 Table.propTypes = {
-  searchTerm: PropTypes.string,
-  list: PropTypes.object,
-  onDismiss: PropTypes.func,
-  isSearched: PropTypes.func
+  searchTerm: PropTypes.string.isRequired,
+  list: PropTypes.object.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+  isSearched: PropTypes.func.isRequired
 }
 
 export default Table
