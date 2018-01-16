@@ -6,12 +6,12 @@ import Button from './Button'
 const Table = (props) => {
   const { searchTerm, list, onDismiss, isSearched } = props
   return (
-    <div>
+    <div className="table">
       {
         list
           .filter(isSearched(searchTerm))
           .map(item =>
-            <div key={item.objectID}>
+            <div key={item.objectID} className="table-row">
               <span>
                 <a href={item.url}>{item.title}</a>
               </span>
@@ -19,6 +19,7 @@ const Table = (props) => {
               <span>{item.num_comments}</span>
               <span>{item.points}</span>
               <Button
+                className="button-line"
                 onDismiss={() => { onDismiss(item.objectID) }}
               >
                 Dismiss
