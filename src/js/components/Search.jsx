@@ -16,7 +16,7 @@ const Search = (props) => {
 }
 
 Search.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
   onSearchChange: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired
 }

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 
 const Table = (props) => {
-  const { searchTerm, list, onDismiss, isSearched } = props
+  const { searchTerm, result, onDismiss, isSearched } = props
   return (
     <div className="table">
       {
-        list
+        result
           .filter(isSearched(searchTerm))
           .map(item =>
             <div key={item.objectID} className="table-row">
@@ -33,7 +33,7 @@ const Table = (props) => {
 
 Table.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  list: PropTypes.object.isRequired,
+  result: PropTypes.array.isRequired,
   onDismiss: PropTypes.func.isRequired,
   isSearched: PropTypes.func.isRequired
 }
