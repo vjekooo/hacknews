@@ -40,10 +40,16 @@ class App extends Component {
       return item.objectID !== id
     }
     const updatedHits = hits.filter(isNotId)
+    // this.setState({
+    //   result: Object.assign({}, this.state.result, {
+    //     hits: updatedHits
+    //   })
+    // })
     this.setState({
-      result: Object.assign({}, this.state.result, {
+      result: {
+        ...this.state.result,
         hits: updatedHits
-      })
+      }
     })
   }
 
@@ -67,12 +73,15 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table
-          result={result.hits}
-          searchTerm={searchTerm}
-          onDismiss={this.onDismiss}
-          isSearched={isSearched}
-        />
+        { result
+          ? <Table
+            result={result.hits}
+            searchTerm={searchTerm}
+            onDismiss={this.onDismiss}
+            isSearched={isSearched}
+          />
+          : null
+        }
       </div>
     )
   }
