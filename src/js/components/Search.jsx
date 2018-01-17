@@ -3,14 +3,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Search = (props) => {
-  const { searchTerm, onSearchChange, children } = props
+  const { searchTerm, onSearchChange, onSearchSubmit, children } = props
   return (
-    <form>
-      {children} <input
+    <form
+      onSubmit={onSearchSubmit}
+    >
+      <input
         type="text"
         value={searchTerm}
         onChange={onSearchChange}
       />
+      <button type="submit">
+        {children}
+      </button>
     </form>
   )
 }
@@ -18,6 +23,7 @@ const Search = (props) => {
 Search.propTypes = {
   searchTerm: PropTypes.string,
   onSearchChange: PropTypes.func.isRequired,
+  onSearchSubmit: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired
 }
 

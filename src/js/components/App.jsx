@@ -4,9 +4,6 @@ import Search from './Search'
 import Table from './Table'
 import { DEFAULT_QUERY, fetchData } from '../../data'
 
-const isSearched = searchTerm => item =>
-  item.title.toLowerCase().includes(searchTerm.toLowerCase())
-
 class App extends Component {
   constructor (props) {
     super(props)
@@ -27,6 +24,12 @@ class App extends Component {
     fetchData(searchTerm)
       .then(result => this.setSearchTopStories(result))
       .catch(e => e)
+  }
+
+  onSearchSubmit = (event) => {
+    const { searchTerm } = this.state
+    this.fetchSearchTopStories(searchTerm)
+    event.preventDefault()
   }
 
   componentDidMount () {
@@ -69,6 +72,7 @@ class App extends Component {
           <Search
             value={searchTerm}
             onSearchChange={this.onSearchChange}
+            onSearchSubmit={this.onSearchSubmit}
           >
             Search
           </Search>
@@ -76,9 +80,7 @@ class App extends Component {
         { result
           ? <Table
             result={result.hits}
-            searchTerm={searchTerm}
             onDismiss={this.onDismiss}
-            isSearched={isSearched}
           />
           : null
         }
