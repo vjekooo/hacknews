@@ -18,7 +18,7 @@ const Table = (props) => {
               <span>{item.num_comments}</span>
               <span>{item.points}</span>
               <Button
-                className="button-line"
+                className="button-inline"
                 onDismiss={() => { onDismiss(item.objectID) }}
               >
                 Dismiss

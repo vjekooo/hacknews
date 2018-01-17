@@ -5,15 +5,15 @@
   box-sizing: border-box;
 }
 body {
-  background-color: salmon;
+  background-color: peachpuff;
   color: #222;
   font: 400 14px CoreSans, Arial, sans-serif;
 }
 a {
   color: #222;
-}
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 ul, li {
   list-style: none;
@@ -30,16 +30,14 @@ input {
 button {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #dddddd;
+  border: 1px solid #808080;
   background: transparent;
   color: #808080;
   cursor: pointer;
+  &:hover {
+    color: #222;
+  }
 }
-
-button:hover {
-  color: #222;
-}
-
 *:focus {
   outline: none;
 }
@@ -70,6 +68,7 @@ button:hover {
 }
 .table-row {
   display: flex;
+  align-items: center;
   line-height: 24px;
   white-space: nowrap;
   margin: 10px 0;
@@ -91,11 +90,11 @@ button:hover {
 }
 
 .button-inline {
+  margin-left: 15px;
   border-width: 0;
   background: transparent;
-  color: inherit;
+  color: salmon;
   text-align: inherit;
-  -webkit-font-smoothing: inherit;
   padding: 0;
   font-size: inherit;
   cursor: pointer;
