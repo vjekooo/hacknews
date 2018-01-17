@@ -16,8 +16,8 @@ const Button = (props) => {
 }
 
 Button.propTypes = {
-  className: PropTypes.string.isRequired,
-  onDismiss: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  onDismiss: PropTypes.func,
   children: PropTypes.string.isRequired
 }
 

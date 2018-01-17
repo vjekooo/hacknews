@@ -4,22 +4,26 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background-color: peachpuff;
   color: #222;
   font: 400 14px CoreSans, Arial, sans-serif;
 }
+
 a {
   color: #222;
   &:hover {
     text-decoration: underline;
   }
 }
+
 ul, li {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 input {
   padding: 10px;
   border-radius: 5px;
@@ -27,6 +31,7 @@ input {
   margin-right: 10px;
   border: 1px solid #dddddd;
 }
+
 button {
   padding: 10px;
   border-radius: 5px;
@@ -38,9 +43,11 @@ button {
     color: #222;
   }
 }
+
 *:focus {
   outline: none;
 }
+
 //App
 .page {
   margin: 20px;
@@ -48,6 +55,12 @@ button {
 
 .interactions {
   text-align: center;
+}
+
+.divide {
+  margin-bottom: 20px;
+  height: 5px;
+  background-color: lightcoral;
 }
 
 .table {
@@ -61,11 +74,13 @@ button {
   padding: 0 10px;
   justify-content: space-between;
 }
+
 .table-empty {
   margin: 200px;
   text-align: center;
   font-size: 16px;
 }
+
 .table-row {
   display: flex;
   align-items: center;
@@ -98,6 +113,10 @@ button {
   padding: 0;
   font-size: inherit;
   cursor: pointer;
+}
+
+.button-more {
+  background-color: white;
 }
 
 .button-active {

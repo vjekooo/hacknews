@@ -15,13 +15,21 @@ class App extends Component {
   }
 
   setSearchTopStories = (result) => {
+    const { hits, page } = result
+    const oldHits = page !== 0 ? this.state.result.hits : []
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ]
     this.setState({
-      result
+      result: {
+        hits: updatedHits, page
+      }
     })
   }
 
-  fetchSearchTopStories = (searchTerm) => {
-    fetchData(searchTerm)
+  fetchSearchTopStories = (searchTerm, page) => {
+    fetchData(searchTerm, page)
       .then(result => this.setSearchTopStories(result))
       .catch(e => e)
   }
@@ -63,6 +71,8 @@ class App extends Component {
   }
   render () {
     const { searchTerm, result } = this.state
+    const page = (result && result.page) || 0
+    console.log(page)
     if (!result) {
       return null
     }
@@ -84,6 +94,14 @@ class App extends Component {
           />
           : null
         }
+        <div className="interactions">
+          <button
+            className="button-more"
+            onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
+          >
+            More
+          </button>
+        </div>
       </div>
     )
   }
