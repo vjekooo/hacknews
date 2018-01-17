@@ -10,7 +10,8 @@ class App extends Component {
 
     this.state = {
       result: null,
-      searchTerm: DEFAULT_QUERY
+      searchTerm: DEFAULT_QUERY,
+      error: null
     }
   }
 
@@ -31,7 +32,9 @@ class App extends Component {
   fetchSearchTopStories = (searchTerm, page) => {
     fetchData(searchTerm, page)
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e)
+      .catch(e => this.setState({
+        error: e
+      }))
   }
 
   onSearchSubmit = (event) => {
@@ -70,11 +73,15 @@ class App extends Component {
     })
   }
   render () {
-    const { searchTerm, result } = this.state
+    const { searchTerm, result, error } = this.state
     const page = (result && result.page) || 0
     console.log(page)
-    if (!result) {
-      return null
+    if (error) {
+      return (
+        <div className="error-msg">
+          <h1>Wooopsi! Something went wrong with the data fetch</h1>
+        </div>
+      )
     }
     return (
       <div className="page">

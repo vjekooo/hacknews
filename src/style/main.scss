@@ -49,6 +49,11 @@ button {
 }
 
 //App
+#app {
+  margin: 0 auto;
+  width: 90%;
+}
+
 .page {
   margin: 20px;
 }
@@ -122,4 +127,11 @@ button {
 .button-active {
   border-radius: 0;
   border-bottom: 1px solid #38BB6C;
+}
+
+.error-msg {
+  width: 70%;
+  margin: 5rem auto;
+  background-color: antiquewhite;
+  text-align: center;
 }
