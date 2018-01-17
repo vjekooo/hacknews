@@ -75,14 +75,7 @@ class App extends Component {
   render () {
     const { searchTerm, result, error } = this.state
     const page = (result && result.page) || 0
-    console.log(page)
-    if (error) {
-      return (
-        <div className="error-msg">
-          <h1>Wooopsi! Something went wrong with the data fetch</h1>
-        </div>
-      )
-    }
+
     return (
       <div className="page">
         <div className="interactions">
@@ -94,6 +87,11 @@ class App extends Component {
             Search
           </Search>
         </div>
+        { error &&
+          <div className="error-msg">
+            <h1>Wooopsi! Something went wrong with the data fetch</h1>
+          </div>
+        }
         { result
           ? <Table
             result={result.hits}
