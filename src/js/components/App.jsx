@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import Search from './Search'
 import Table from './Table'
-import { DEFAULT_QUERY, fetchData } from '../../data'
+import api from '../utils/api'
 
 class App extends Component {
   constructor (props) {
@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       result: null,
-      searchTerm: DEFAULT_QUERY,
+      searchTerm: api.DEFAULT_QUERY,
       error: null
     }
   }
@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   fetchSearchTopStories = (searchTerm, page) => {
-    fetchData(searchTerm, page)
+    api.fetchData(searchTerm, page)
       .then(result => this.setSearchTopStories(result))
       .catch(e => this.setState({
         error: e
