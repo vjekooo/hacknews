@@ -32,7 +32,7 @@ const Table = (props) => {
 
 Table.propTypes = {
   result: PropTypes.array.isRequired,
-  onDismiss: PropTypes.func.isRequired
+  onDismiss: PropTypes.func
 }
 
 export default Table

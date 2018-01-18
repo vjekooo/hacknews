@@ -22,8 +22,8 @@ const Search = (props) => {
 
 Search.propTypes = {
   searchTerm: PropTypes.string,
-  onSearchChange: PropTypes.func.isRequired,
-  onSearchSubmit: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func,
+  onSearchSubmit: PropTypes.func,
   children: PropTypes.string.isRequired
 }
 
