@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       result: null,
       searchTerm: api.DEFAULT_QUERY,
-      error: null
+      error: null,
+      isLoading: false
     }
   }
 
@@ -22,14 +23,20 @@ class App extends Component {
       ...oldHits,
       ...hits
     ]
+
     this.setState({
       result: {
         hits: updatedHits, page
-      }
+      },
+      isLoading: false
     })
   }
 
   fetchSearchTopStories = (searchTerm, page) => {
+    this.setState({
+      isLoading: true
+    })
+
     api.fetchData(searchTerm, page)
       .then(result => this.setSearchTopStories(result))
       .catch(e => this.setState({
@@ -73,7 +80,7 @@ class App extends Component {
     })
   }
   render () {
-    const { searchTerm, result, error } = this.state
+    const { searchTerm, result, error, isLoading } = this.state
     const page = (result && result.page) || 0
 
     return (
@@ -100,12 +107,15 @@ class App extends Component {
           : null
         }
         <div className="interactions">
-          <button
-            className="button-more"
-            onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
-          >
-            More
-          </button>
+          { isLoading
+            ? <h1>Loading</h1>
+            : <button
+              className="button-more"
+              onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
+            >
+              More
+            </button>
+          }
         </div>
       </div>
     )
