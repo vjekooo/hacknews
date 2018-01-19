@@ -1,8 +1,14 @@
 
-import React from 'react'
-import PropTypes from 'prop-types'
+// @flow
 
-const Search = (props) => {
+import React from 'react'
+
+const Search = (props: {
+  searchTerm: string,
+  onSearchChange: void,
+  onSearchSubmit: void,
+  children: string
+}) => {
   const { searchTerm, onSearchChange, onSearchSubmit, children } = props
   return (
     <form
@@ -18,13 +24,6 @@ const Search = (props) => {
       </button>
     </form>
   )
-}
-
-Search.propTypes = {
-  searchTerm: PropTypes.string,
-  onSearchChange: PropTypes.func,
-  onSearchSubmit: PropTypes.func,
-  children: PropTypes.string.isRequired
 }
 
 export default Search

@@ -1,8 +1,13 @@
 
-import React from 'react'
-import PropTypes from 'prop-types'
+// @flow
 
-const Button = (props) => {
+import React from 'react'
+
+const Button = (props: {
+  className: string,
+  onDismiss: void,
+  children: string
+}) => {
   const { onDismiss, className = '', children } = props
   return (
     <button
@@ -13,12 +18,6 @@ const Button = (props) => {
       {children}
     </button>
   )
-}
-
-Button.propTypes = {
-  className: PropTypes.string,
-  onDismiss: PropTypes.func,
-  children: PropTypes.string.isRequired
 }
 
 export default Button

@@ -1,10 +1,23 @@
 
+// @flow
+
 import React, { Component } from 'react'
 import Search from './Search'
 import Table from './Table'
 import api from '../utils/api'
 
-class App extends Component {
+type Props = {
+
+}
+
+type State = {
+  result: any,
+  searchTerm: string,
+  error: ?string,
+  isLoading: bool
+}
+
+class App extends Component<Props, State> {
   constructor (props) {
     super(props)
 
@@ -32,7 +45,7 @@ class App extends Component {
     })
   }
 
-  fetchSearchTopStories = (searchTerm, page) => {
+  fetchSearchTopStories = (searchTerm: string, page: number) => {
     this.setState({
       isLoading: true
     })
@@ -55,7 +68,7 @@ class App extends Component {
     this.fetchSearchTopStories(searchTerm)
   }
 
-  onDismiss = (id) => {
+  onDismiss = (id: number) => {
     const { hits } = this.state.result
     function isNotId (item) {
       return item.objectID !== id

@@ -1,15 +1,17 @@
 
 // @flow
 
+const DEFAULT_QUERY: string = 'react'
+const PATH_BASE: string = 'https://hn.algolia.com/api/v1'
+const PATH_SEARCH: string = '/search'
+const PARAM_SEARCH: string = 'query='
+const PARAM_PAGE: string = 'page='
+
 module.exports = {
-  DEFAULT_QUERY: 'react',
-  PATH_BASE: 'https://hn.algolia.com/api/v1',
-  PATH_SEARCH: '/search',
-  PARAM_SEARCH: 'query=',
-  PARAM_PAGE: 'page=',
+  DEFAULT_QUERY,
   fetchData: async function (searchTerm: string, page: number = 0) {
     const response = await fetch(
-      `${this.PATH_BASE}${this.PATH_SEARCH}?${this.PARAM_SEARCH}${searchTerm}&${this.PARAM_PAGE}${page}`
+      `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`
     )
     return response.json()
   }
