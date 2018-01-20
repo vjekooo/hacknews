@@ -9,7 +9,7 @@ const PARAM_PAGE: string = 'page='
 
 module.exports = {
   DEFAULT_QUERY,
-  fetchData: async function (searchTerm: string, page: number = 0) {
+  fetchSearch: async function (searchTerm: string, page: number = 0) {
     const response = await fetch(
       `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`
     )

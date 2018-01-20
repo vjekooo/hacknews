@@ -1,9 +1,9 @@
 
 // @flow
 
-import React, { Component } from 'react'
-import Search from './Search'
+import React, { Component, Fragment } from 'react'
 import Table from './Table'
+import Header from './Header'
 import api from '../utils/api'
 
 type Props = {
@@ -18,7 +18,7 @@ type State = {
 }
 
 class App extends Component<Props, State> {
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
 
     this.state = {
@@ -50,22 +50,22 @@ class App extends Component<Props, State> {
       isLoading: true
     })
 
-    api.fetchData(searchTerm, page)
+    api.fetchSearch(searchTerm, page)
       .then(result => this.setSearchTopStories(result))
       .catch(e => this.setState({
         error: e
       }))
   }
 
-  onSearchSubmit = (event) => {
+  onSearchSubmit = (event: SyntheticEvent<>) => {
     const { searchTerm } = this.state
-    this.fetchSearchTopStories(searchTerm)
+    this.fetchSearchTopStories(searchTerm, 0)
     event.preventDefault()
   }
 
   componentDidMount () {
     const { searchTerm } = this.state
-    this.fetchSearchTopStories(searchTerm)
+    this.fetchSearchTopStories(searchTerm, 0)
   }
 
   onDismiss = (id: number) => {
@@ -87,7 +87,7 @@ class App extends Component<Props, State> {
     })
   }
 
-  onSearchChange = (event) => {
+  onSearchChange = (event: SyntheticInputEvent<>) => {
     this.setState({
       searchTerm: event.target.value
     })
@@ -95,42 +95,41 @@ class App extends Component<Props, State> {
   render () {
     const { searchTerm, result, error, isLoading } = this.state
     const page = (result && result.page) || 0
-
+    console.log(this.state)
     return (
-      <div className="page">
-        <div className="interactions">
-          <Search
-            value={searchTerm}
-            onSearchChange={this.onSearchChange}
-            onSearchSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
-        { error &&
-          <div className="error-msg">
-            <h1>Wooopsi! Something went wrong with the data fetch</h1>
-          </div>
-        }
-        { result
-          ? <Table
-            result={result.hits}
-            onDismiss={this.onDismiss}
-          />
-          : null
-        }
-        <div className="interactions">
-          { isLoading
-            ? <h1>Loading</h1>
-            : <button
-              className="button-more"
-              onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
-            >
-              More
-            </button>
+      <Fragment>
+        <Header
+          value={searchTerm}
+          onSearchChange={this.onSearchChange}
+          onSearchSubmit={this.onSearchSubmit}
+        >
+        </Header>
+        <div className="page">
+          { error &&
+            <div className="error-msg">
+              <h1>Wooopsi! Something went wrong with the data fetch</h1>
+            </div>
           }
+          { result
+            ? <Table
+              result={result.hits}
+              onDismiss={this.onDismiss}
+            />
+            : null
+          }
+          <div className="interactions">
+            { isLoading
+              ? <h1>Loading</h1>
+              : <button
+                className="button-more"
+                onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
+              >
+                More
+              </button>
+            }
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }

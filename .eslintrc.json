@@ -2,7 +2,8 @@
   "parser": "babel-eslint",
   "extends": ["standard", "plugin:react/recommended"],
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "parserOptions": {
     "ecmaVersion": 8,
@@ -19,6 +20,9 @@
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
   }
 }
