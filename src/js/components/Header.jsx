@@ -7,11 +7,11 @@ import Search from './Search'
 const Header = (props) => {
   const { value, onSearchChange, onSearchSubmit } = props
   return (
-    <header className="hacker-header">
-      <div className="hacker-title">
-        <h1>Hacker News</h1>
+    <header className="page-header">
+      <div className="page-title">
+        <h2>Hacker News</h2>
       </div>
-      <div className="hacker-search">
+      <div className="page-search">
         <Search
           value={value}
           onSearchChange={onSearchChange}
@@ -19,6 +19,9 @@ const Header = (props) => {
         >
           Search
         </Search>
+      </div>
+      <div>
+        <h4>login</h4>
       </div>
     </header>
   )
