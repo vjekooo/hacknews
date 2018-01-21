@@ -4,6 +4,7 @@
 import React, { Component, Fragment } from 'react'
 import Table from './Table'
 import Header from './Header'
+import Nav from './Nav'
 import api from '../utils/api'
 
 type Props = {
@@ -57,15 +58,36 @@ class App extends Component<Props, State> {
       }))
   }
 
+  fetchHackerStories = (searchTerm: string, page: number) => {
+    this.setState({
+      isLoading: true
+    })
+
+    api.fetchFront(searchTerm, page)
+      .then(result => this.setSearchTopStories(result))
+      .catch(e => this.setState({
+        error: e
+      }))
+  }
+
+  nextPage = (searchTerm: string, page: number) => {
+    searchTerm === 'front_page'
+      ? this.fetchHackerStories(searchTerm, page)
+      : this.fetchSearchTopStories(searchTerm, page)
+  }
+
   onSearchSubmit = (event: SyntheticEvent<>) => {
     const { searchTerm } = this.state
-    this.fetchSearchTopStories(searchTerm, 0)
     event.preventDefault()
+    this.fetchSearchTopStories(searchTerm)
+    this.setState({
+      searchTerm: ''
+    })
   }
 
   componentDidMount () {
     const { searchTerm } = this.state
-    this.fetchSearchTopStories(searchTerm, 0)
+    this.fetchHackerStories(searchTerm)
   }
 
   onDismiss = (id: number) => {
@@ -95,7 +117,6 @@ class App extends Component<Props, State> {
   render () {
     const { searchTerm, result, error, isLoading } = this.state
     const page = (result && result.page) || 0
-    console.log(this.state)
     return (
       <Fragment>
         <Header
@@ -104,6 +125,7 @@ class App extends Component<Props, State> {
           onSearchSubmit={this.onSearchSubmit}
         >
         </Header>
+        <Nav />
         <div className="page">
           { error &&
             <div className="error-msg">
@@ -122,7 +144,7 @@ class App extends Component<Props, State> {
               ? <h1>Loading</h1>
               : <button
                 className="button-more"
-                onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
+                onClick={() => this.nextPage(searchTerm, page + 1)}
               >
                 More
               </button>

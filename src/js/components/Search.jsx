@@ -10,10 +10,16 @@ const Search = (props: {
   children: string
 }) => {
   const { searchTerm, onSearchChange, onSearchSubmit, children } = props
+  console.log(searchTerm)
   return (
     <form
       onSubmit={onSearchSubmit}
     >
+      <label
+        htmlFor={searchTerm}
+      >
+        {children}
+      </label>
       <input
         type="text"
         value={searchTerm}

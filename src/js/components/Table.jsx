@@ -9,14 +9,17 @@ const Table = (props) => {
     <div className="table">
       {
         result
-          .map(item =>
+          .map((item, index) =>
             <div key={item.objectID} className="table-row">
+              <span>
+                {index + 1}
+              </span>
               <span>
                 <a href={item.url}>{item.title}</a>
               </span>
-              <span>{item.author}</span>
-              <span>{item.num_comments}</span>
-              <span>{item.points}</span>
+              <span>{item.points} points</span>
+              <span>by {item.author}</span>
+              <span>{item.num_comments} comments</span>
               <Button
                 className="button-inline"
                 onDismiss={() => { onDismiss(item.objectID) }}

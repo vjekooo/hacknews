@@ -26,11 +26,17 @@ ul, li {
 
 input {
   width: 80%;
-  padding: 10px;
+  padding: 10px 10px 10px 80px;
   border-radius: 1px;
   outline: none;
   margin-right: 10px;
   border: 1px solid #dddddd;
+}
+
+label {
+  position: absolute;
+  color: #dddddd;
+  padding: 10px 0 0 10px;
 }
 
 button {
@@ -53,8 +59,7 @@ button {
 #app {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 70px auto;
-  grid-gap: 20px;
+  grid-template-rows: 70px 30px auto;
   justify-items: center;
 }
 
@@ -72,6 +77,22 @@ button {
   }
   h4 {
     color: whitesmoke;
+  }
+}
+
+.page-menu {
+  display: flex;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 80%;
+}
+
+.page-menu-items {
+  display: flex;
+  justify-content: start;
+  margin-left: 20px;
+  span {
+    padding: 0 5px 0 5px;
   }
 }
 
