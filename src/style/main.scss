@@ -59,7 +59,7 @@ button {
 #app {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 70px 30px auto;
+  grid-template-rows: 70px 30px auto 50px;
   justify-items: center;
 }
 
@@ -98,6 +98,7 @@ button {
 
 .page {
   width: 80%;
+  margin-bottom: 50px;
 }
 
 .interactions {
@@ -176,4 +177,16 @@ button {
   margin: 5rem auto;
   background-color: antiquewhite;
   text-align: center;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 2rem 0 2rem;
+  background-color: whitesmoke;
+  span {
+    color: #808080;
+  }
 }

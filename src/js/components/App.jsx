@@ -5,6 +5,7 @@ import React, { Component, Fragment } from 'react'
 import Table from './Table'
 import Header from './Header'
 import Nav from './Nav'
+import Footer from './Footer'
 import api from '../utils/api'
 
 type Props = {
@@ -151,6 +152,7 @@ class App extends Component<Props, State> {
             }
           </div>
         </div>
+        <Footer />
       </Fragment>
     )
   }

@@ -25,9 +25,6 @@ const Search = (props: {
         value={searchTerm}
         onChange={onSearchChange}
       />
-      <button type="submit">
-        {children}
-      </button>
     </form>
   )
 }
